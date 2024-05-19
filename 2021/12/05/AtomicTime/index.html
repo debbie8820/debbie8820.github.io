@@ -1,43 +1,280 @@
-const { Component } = require('inferno');
-const classname = require('hexo-component-inferno/lib/util/classname');
-const Head = require('./common/head');
-const Navbar = require('./common/navbar');
-const Widgets = require('./common/widgets');
-const Footer = require('./common/footer');
-const Scripts = require('./common/scripts');
-const Search = require('./common/search');
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>《原子時間》 Atomic Time 讀後筆記 - Debbie&#039;s Notes on Life and Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Debbie&#039;s Notes on Life and Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Debbie&#039;s Notes on Life and Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="大多數人會把一週簡單分為「平日」和「週末」，也就是「工作日」和「非工作日」，這樣的想法會讓人把平日下班後的時間拿來等待週末，做一些無意義的事情，反而浪費了時間。事實上，你可以拿下班後的時間去做你想喜歡的事情。 當你認為時間綽綽有餘時，效率會降低，擁有很多自由時間反而需要更高的自制力。 此時幫自己設截止期限就是很好的推動力，像是平日晚上做事，固定上床時間。  💡 該如何填滿生活才不會後悔？"><meta property="og:type" content="blog"><meta property="og:title" content="《原子時間》 Atomic Time 讀後筆記"><meta property="og:url" content="https://debbie8820.github.io/2021/12/05/AtomicTime/"><meta property="og:site_name" content="Debbie&#039;s Notes on Life and Tech"><meta property="og:description" content="大多數人會把一週簡單分為「平日」和「週末」，也就是「工作日」和「非工作日」，這樣的想法會讓人把平日下班後的時間拿來等待週末，做一些無意義的事情，反而浪費了時間。事實上，你可以拿下班後的時間去做你想喜歡的事情。 當你認為時間綽綽有餘時，效率會降低，擁有很多自由時間反而需要更高的自制力。 此時幫自己設截止期限就是很好的推動力，像是平日晚上做事，固定上床時間。  💡 該如何填滿生活才不會後悔？"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://debbie8820.github.io/gallery/clock.jpg"><meta property="article:published_time" content="2021-12-05T05:51:11.000Z"><meta property="article:modified_time" content="2021-12-05T09:21:01.996Z"><meta property="article:author" content="Debbie"><meta property="article:tag" content="Time management"><meta property="article:tag" content="Reading"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://debbie8820.github.io/gallery/clock.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://debbie8820.github.io/2021/12/05/AtomicTime/"},"headline":"《原子時間》 Atomic Time 讀後筆記","image":["https://debbie8820.github.io/gallery/clock.jpg"],"datePublished":"2021-12-05T05:51:11.000Z","dateModified":"2021-12-05T09:21:01.996Z","author":{"@type":"Person","name":"Debbie"},"publisher":{"@type":"Organization","name":"Debbie's Notes on Life and Tech","logo":{"@type":"ImageObject","url":"https://debbie8820.github.io/img/logo.svg"}},"description":"大多數人會把一週簡單分為「平日」和「週末」，也就是「工作日」和「非工作日」，這樣的想法會讓人把平日下班後的時間拿來等待週末，做一些無意義的事情，反而浪費了時間。事實上，你可以拿下班後的時間去做你想喜歡的事情。 當你認為時間綽綽有餘時，效率會降低，擁有很多自由時間反而需要更高的自制力。 此時幫自己設截止期限就是很好的推動力，像是平日晚上做事，固定上床時間。  💡 該如何填滿生活才不會後悔？"}</script><link rel="canonical" href="https://debbie8820.github.io/2021/12/05/AtomicTime/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6637714046288894" crossorigin="anonymous"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-module.exports = class extends Component {
-    render() {
-        const { site, config, page, helper, body } = this.props;
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-        const language = page.lang || page.language || config.language;
-        const columnCount = Widgets.getColumnCount(config.widgets, config, page);
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-        return <html lang={language ? language.substr(0, 2) : ''}>
-            <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-${columnCount}-column`}>
-                <Navbar config={config} helper={helper} page={page} />
-                <section class="section">
-                    <div class="container">
-                        <div class="columns">
-                            <div class={classname({
-                                column: true,
-                                'order-2': true,
-                                'column-main': true,
-                                'is-12': columnCount === 1,
-                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
-                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
-                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
-                        </div>
-                    </div>
-                </section>
-                <Footer config={config} helper={helper} />
-                <Scripts site={site} config={config} helper={helper} page={page} />
-                <Search config={config} helper={helper} />
-            </body>
-        </html>;
-    }
-};
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Debbie&#039;s Notes on Life and Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-12-05T05:51:11.000Z" title="2021/12/5 下午1:51:11">2021-12-05</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-12-05T09:21:01.996Z" title="2021/12/5 下午5:21:01">2021-12-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Reading/">Reading</a></span><span class="level-item">33 minutes read (About 4955 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">《原子時間》 Atomic Time 讀後筆記</h1><div class="content"><p>大多數人會把一週簡單分為「平日」和「週末」，也就是「工作日」和「非工作日」，這樣的想法會讓人把平日下班後的時間拿來等待週末，做一些無意義的事情，反而浪費了時間。事實上，你可以拿下班後的時間去做你想喜歡的事情。</p>
+<p>當你認為時間綽綽有餘時，效率會降低，擁有很多自由時間反而需要更高的自制力。</p>
+<p>此時幫自己設截止期限就是很好的推動力，像是平日晚上做事，固定上床時間。</p>
+<aside>
+💡 該如何填滿生活才不會後悔？
+
+</aside>
+
+<p>為了生活，我們還是需要工作領薪水，但這不代表你不能同時追求其他事情，建立有效率、有時間意識感的晚間計畫，就是最好的方法。</p>
+<p>比起問「幾點能下班？」，不如問自己「下班後做什麼？」</p>
+<h3 id="如何找出下班能做的事？"><a href="#如何找出下班能做的事？" class="headerlink" title="如何找出下班能做的事？"></a>如何找出下班能做的事？</h3><ol>
+<li><p>選擇讓你有點小忙，但壓力較小的事</p>
+<pre><code>因為這是工作後要做的事情，如果壓力大容易做不下去，因此選擇的事情不必太有建設性，只要能讓眼睛為之一亮即可。像是看個電影、煮菜。從中獲得的資訊，可能是未來創造利潤的資源。
+</code></pre>
+</li>
+<li><p>事先計算需要付出的時間和成本</p>
+<pre><code>針對有興趣的副業，先去做資料了解，推算自己是否能負荷時間費用，避免做白工。
+</code></pre>
+</li>
+<li><p>先試試水溫，不適合要有放棄的勇氣</p>
+</li>
+</ol>
+<h3 id="二、晚上改變了，早晨也會跟著改變"><a href="#二、晚上改變了，早晨也會跟著改變" class="headerlink" title="二、晚上改變了，早晨也會跟著改變"></a>二、晚上改變了，早晨也會跟著改變</h3><p>有趣很好，有錢更好</p>
+<p>藉由副業可以增加收入很棒，但能將下班後的自由時光過得有意義，即使賺不了錢、沒有人知道，也足以被視為非常有意義的時光。</p>
+<p>培養成習慣最重要</p>
+<p>下班後畫畫圖、健身，不管是為了興趣、健康或是小小業外收入，每天持續實踐才是最重要的，也因此我們需要設定目標。</p>
+<h3 id="三、晚間計畫的起點"><a href="#三、晚間計畫的起點" class="headerlink" title="三、晚間計畫的起點"></a>三、晚間計畫的起點</h3><aside>
+💡 不要等待，時機永遠不會恰到好處
+
+</aside>
+
+<p>設定目標的前置作業</p>
+<ol>
+<li> <strong>思考目標背後的意義</strong></li>
+</ol>
+<p>做事時光靠樂趣跟毅力是不夠的，比起注重目標的達成，去思考目標達成背後的意義和價值更為重要</p>
+<p>e.g. 雖然作者認為擔任youtuber每次剪輯上字幕的過程很冗長且機械化，但他還是能夠堅持下去，原因是因為他想到這部影片會帶給很多人努力的動力，因此他能持續下去。</p>
+<ol>
+<li>目標可以量化，意義賦予動能</li>
+</ol>
+<p>很多人的目標會設定成今年要賺多少錢，當他們達成這個目標時，會維持短暫的快樂，隨後內心卻會感到空虛，這是因為他們只在意淺層的「目標」，沒有去思考背後帶來的意義。這樣很容易流於盲目追尋目標，無法達到內心實質的富足。</p>
+<p>意義可以賦予動能，讓你克服過程中遇到的困難。</p>
+<p>e.g. 作者在擔任獸醫時常常遇到機車主人，雖然覺得煩躁，但是只要想到這份工作能夠幫助到動物，他就有動力繼續做下去。</p>
+<p>設定計畫四步驟</p>
+<ol>
+<li>大目標 (這輩子或這兩年非常想要達成的計畫)</li>
+<li>尋找意義 (意義賦予動能)</li>
+<li>釐清方向 (要達成目標一定要做的事情)</li>
+<li>行動方案 (為了完成方向而進行的小計畫)</li>
+</ol>
+<p>e.g. 使用曼陀羅計畫表把今年的終極目標寫上去，旁邊再圍繞八個小目標</p>
+<p>達成目標的七個階段</p>
+<ol>
+<li> 設定目標</li>
+<li>訂出期限</li>
+<li>製作目標清單</li>
+<li>擬定行動步驟</li>
+<li>去除障礙</li>
+<li>持續實踐 &amp; 修正</li>
+<li>持續前進</li>
+</ol>
+<p>訂下行動方案以後，專注在完成事項就可以了，焦點不用放在目標，因為只要把該做的事情做好，離目標自然會越來越近。</p>
+<p><strong>害怕猶豫時該怎麼辦?</strong></p>
+<aside>
+💡 煩惱短一點，行動快一點
+
+</aside>
+
+<p>想像自己是排隊打針的人，當你看到前面的人打針後哀叫，此時你的恐懼感也會跟著變大。如果你是第一個打針的人，恐懼感反而還比較小。</p>
+<p>恐懼感會隨著時間變大，但隨著行動而消除，因此當你覺得不安時，不如趕快開始行動才是解決之道，就算要擔心，也要給自己設定期限，如果因為擔心而遲遲不敢開始，反而會綁手綁腳，沒辦法做事。</p>
+<p>克服擔心的方法：</p>
+<ol>
+<li>問自己如果失敗的話是否會連累他人? 如果不會就趕快行動</li>
+<li>給自己設定擔心的期限最多三天</li>
+<li>把煩惱的原因用文字紀錄下來，很多時候煩惱產生都是因為感性，但用文字紀錄反而能幫助你用理性去思考，梳理情緒</li>
+</ol>
+<h3 id="四、建立高效的晚間計畫-上"><a href="#四、建立高效的晚間計畫-上" class="headerlink" title="四、建立高效的晚間計畫(上)"></a>四、建立高效的晚間計畫(上)</h3><aside>
+💡 人類最困難的事，就是了解自己並改變自己 (Alfred Adler)
+
+</aside>
+
+<p><strong>為甚麼總是覺得沒時間?</strong></p>
+<ol>
+<li>無意識的放任時間流逝 首先要了解時間的特性，當你越在意它，它流動的速度就越慢。比方有三種情況人們覺得過的最久：等泡麵的時候、等退伍的時候和做平板式支撐的時候，相對來說，和朋友聊天或是逛街的時光總是特別快，因為你不會特別關注時間。 如果能養成習慣意識一天24小時，就能比別人多出很多時間。</li>
+<li>常常做一些無關緊要的小事 比方上網看個影片傳個訊息，看起來很瑣碎的小時間，累積起來非常驚人。 要克服這種莫名其妙浪費時間的方式，就是每個半小時或一小時就檢視自己做了什麼，用回顧的方式記錄自己如何使用時間。</li>
+</ol>
+<p><strong>一天中你到底做了什麼? — 利用功能性筆記進行事後回顧</strong></p>
+<p>每小時回顧，找出高專注時段</p>
+<p>紀錄一個月之後，大致能歸納出自己專注的時段有哪些，比方講者他白天體力最好，做勞力的事情效果很好，晚上則用來做創造力相關的事情。因此他白天運動，晚上則剪片或寫文章。照這樣的模式找出自己的節奏，就能有效運用時間。</p>
+<h3 id="制定晚間計畫表步驟"><a href="#制定晚間計畫表步驟" class="headerlink" title="制定晚間計畫表步驟"></a>制定晚間計畫表步驟</h3><ol>
+<li><p>盤點空白時間</p>
+<p> 把每天能夠運用的空閒時間記錄下來，這邊有一點要特別注意，必須固定抽出的時間也要記錄並且從空閒時間扣除，比方帶狗狗散步或陪伴家人等。之所以要這樣做是為了避免在全力以赴做想做的事情時，錯過最基本且重要的小事。</p>
+</li>
+<li><p>了解時間成本和必須投入的專注度</p>
+<p> 評估每件事情要花費的時間。如果是第一次嘗試的東西，建議比預估多排1.5倍的時間，並持續修正。</p>
+</li>
+<li><p>製作晚間時刻表</p>
+<p> 把想做的事情依序填到計畫表中並開始執行。記住，時間表是為了幫助你管理時間而不是來囚禁你的，因此不用因為臨時有事無法執行計畫而感到有壓力，而是根據現況進行彈性調整。</p>
+<p> 不管過程遇到什麼困難，只要持續維持這個習慣，就能漸漸掌握時間。</p>
+<p> 其他方法：番茄鐘</p>
+<h3 id="避免浪費時間的技巧和心態"><a href="#避免浪費時間的技巧和心態" class="headerlink" title="避免浪費時間的技巧和心態"></a>避免浪費時間的技巧和心態</h3><p> 問題不再追劇，在於你有沒有充電</p>
+<p> 很多人會以為時間管理很好的人一定是不停的工作&amp;自我充實，也因此對時間管理的計畫感到壓力。</p>
+<p> 作者想提倡的時間倍增術，並<strong>不是將所有時間花在具有產能的事情上，工作和休息達到平衡才是作者希望大家達到的目標。</strong></p>
+<p> 至於休息跟浪費時間該如何區分? 一個很簡單的原則：只要讓你有充電的感覺，那就是好的休息，比方同樣是放空，有人是在體力。</p>
+ <aside>
+ 💡 管理時間最大的敵人並不是休息，而是無法好好休息，也無法好好工作，得過且過任憑時間流逝
+ 
+ </aside>
+ 
+<p> 五、建立高效的晚間計畫 (下)</p>
+<p> 意志力不是最關鍵的重點</p>
+<p> 培養重複性的節奏感很重要，在同樣的時間做同樣的事情，才能順勢形成習慣。因此可以把所有想養成習慣的事納入日常生活。</p>
+<p> e.g. 每晚睡前半小時閱讀、睡前半小時做瑜珈，即使沒有意志力也可以完成。</p>
+<p> 訂晚間計畫的三大階段</p>
+<p> 一、建立小事 (簡單、好做)</p>
+<p> 二、每天同樣時間重複執行</p>
+<p> 三、堅守設定的時間</p>
+<p> 培養自己，不是一種比賽</p>
+<p> 有些事情必須燃燒精力去做，有些事情則需要慢慢享受，穩穩做下去。知道這個道理以後，會了解之所以有些事會中途放棄，就是因為一開始衝太快了，到後來無法駕馭。</p>
+<p> 思考像大人，行動像孩子</p>
+<p> 無論如何都要有趣</p>
+<p> 讓成果顯而易見</p>
+<p> e.g. 利用 Habit Tracker 紀錄習慣</p>
+<p> 形象塑造，讓自己變成理想中的樣子</p>
+<p> 改變自我認知</p>
+<p> 人們對身邊的人多少有一點刻板印象，比方「那個人太善良了，一定老是被欺負」，我們對自己的認知也是如此，很多時候這些認知反而會限制我們的行為，彷彿像一個框架，覺得自己只能在框架下行動。</p>
+<p> 舉例，覺得自己沒有運動細胞的人就不太會去運動，並永遠停留在「我沒有運動細胞」的自我印象。</p>
+<p> 當一個人對自己的認知過於負面，周遭的人也容易被影響，比方認定你就是不會運動的人，未來有這樣的活動就不會找你。</p>
+<p> 你問我是誰？我是很厲害的人</p>
+<p> 要以正面的形象來定義自己，最有效的時機是「付出一點努力取得等值的小成功」之後，這是略帶吹噓的方式激勵自己最合理也最自在。</p>
+<p> 現在有些理論會告訴你，想成為XX人，要從潛意識告訴自己就是XX人，比方想變有錢人，就告訴自己已經是有錢人了，但作者認為「自我暗示」必須和「行動」相結合才有效果。</p>
+<p> 把自己當作小孩子看待，先做出小小成就 → 浮誇讚美自己 → 進而在腦中重塑自己的形象 → 當你的自我認知變正面了，未來下意識能做出符合自己的形象的決定。</p>
+<h3 id="六、想耍廢的時候怎麼辦：六種危機處理法"><a href="#六、想耍廢的時候怎麼辦：六種危機處理法" class="headerlink" title="六、想耍廢的時候怎麼辦：六種危機處理法"></a>六、想耍廢的時候怎麼辦：六種危機處理法</h3><p> 我只要有做一點點就好</p>
+<p> 有時可能會遇到下列情況，朋友有約、工作累不想繼續、一下班很想躺在床上，這時候該怎麼辦？直接延到明天，還是告訴自己做一點點就好，答案是後者，從過往的經驗可以知道，當你今天一旦放棄，明天絕對不會做事，而且會加倍不想做，因為人有惰性，當下讓自己放棄的藉口，明天會變得更加強大。</p>
+<p> 修正是為了走更遠</p>
+<p> 假設你的目標原本是每天跑 7 km，但你常常因為沒達標而想要放棄，那不如就把目標變成是每天有跑就好，不限定距離，當壓力變小時，腦袋自然會浮現想比昨天多跑一點的念頭。相反地，如果今天不想跑，就隨興的跑五分鐘也可以，只要能持續維持，有彈性的調整是沒問題的。</p>
+<p> 低潮期或無力感來襲時：</p>
+<ol>
+<li>不是低潮，而是離峰期 之所以把低潮稱為離峰期，是因為語言帶來的意義與影響力很大。低潮會帶來無力以及負面的情緒，相對來說，既然有離峰，那就代表有尖峰的存在，也可以告訴自己只是暫時性地碰到熱度較低的時期，活力充沛的日子很快會再到來。</li>
+<li>減少事情的份量 重點在於有彈性、有節奏的去駕馭低潮。大浪來襲時，不是捨命應戰，而是放掉力氣，適當融入，狀態不好的時候少做一點，告訴自己重點是不能放棄。</li>
+<li>不要恐慌，充分休息 當低潮來襲，想減少事情的份量並休息時，就放輕鬆好好休息吧，不用覺得恐慌，如同前面提到的，能達到充電效果的休息就是好的休息，而不是空虛的度過時間。</li>
+<li>得失心不要太重，目標只是方向鍵 常聽人說，想要實現夢想就要努力，但是努力不一定能實現夢想，當今天你已經盡力卻依然無法達成目標時，不用太過沮喪，盡人事聽天命，好好吸取這次的經驗，為下一次繼續努力，不要產生這次無法成功就想放棄一切的想法。目標只是指引你努力的方向，不是為了折磨現在的生活，最理想的狀態是，你的願望能變成可量化的目標，同時也能享受過程中把每個小行動完成的成就感。</li>
+</ol>
+<h3 id="反省演算法：避免過度自責和合理化"><a href="#反省演算法：避免過度自責和合理化" class="headerlink" title="反省演算法：避免過度自責和合理化"></a>反省演算法：避免過度自責和合理化</h3><ol>
+<li>為甚麼沒有按照計畫執行？ 沒有辦法完成計畫的原因有很多種，試著去找出實際的原因，而不是單純覺得自己就是意志力不夠，比方影響意志力的原因可能是身體狀況不佳，天氣太熱，上班壓力大等，如果是身體不好，那就想辦法去改善身體狀況，比如多去運動等。</li>
+<li>問題是否在於我無法駕馭？ 分析完為什麼沒有按照計畫進行的原因後，如果發現這個問題是我就算努力也無法改變，那就不用再想了，不需要為此過度糾結。</li>
+<li>是否已盡了全力？ 筆者從 Marshall Goldsmith 的書 Trigger 學到很好的自省標準。訂出每天想實踐的幾種主題後，設計幾個問題自問自答以取得反饋，而每個問題的最後都必須以「我是否已經盡了全力？」作為結束</li>
+</ol>
+<h3 id="不要讓完美主義綁住你"><a href="#不要讓完美主義綁住你" class="headerlink" title="不要讓完美主義綁住你"></a>不要讓完美主義綁住你</h3><p> 不求做得好，但求做得久</p>
+<hr>
+<pre><code>我們要做的事情不像是開飛機、醫治生命，大部分都是可以容許出錯的，因此不要太糾結完美，只要記得每一次都可以慢慢修正，不求做得好，先求做得久，積少成多，累積屬於自己的能量。
+
+ 
+</code></pre>
+</li>
+</ol>
+<h3 id="意志力不夠時"><a href="#意志力不夠時" class="headerlink" title="意志力不夠時"></a>意志力不夠時</h3><pre><code>    行動力的養成，越自然越好
+</code></pre>
+<p>很多人覺得一定是意志力很強才會長期做一件事情，但問題其實不在行動力，而是行動力。實踐不需要強烈的意志，就只是做昨天做過的事和現在該做的事情而已。</p>
+<pre><code>     與意志力相反，行動力的養成，盡可能越自然越好。
+</code></pre>
+<p>不要對所有事情卯足全力</p>
+<p>從心靈層面來看，意志力和自律是綁在一起的，太常使用意志容易帶來壓力，反而會產生抗拒心理。因此如果不是跟人生有重大影響的事情，就帶著「沒什麼大不了」的心情去做吧。</p>
+<p>在行動前或是行動期間都不要想太多，甚至是刻意想少一點，因為通常在行動前的想法常常會是負面的，像是我會不會做不好等，都還沒行動興致已經少一半了。</p>
+<p>不被情緒綁架的方法就是即時察覺，在自我合理化以前即時行動。</p>
+<aside>
+💡 無論什麼事，感覺不想做之前必須趕快去做。
+
+</aside>
+
+<p>不要想「我果然沒有自制力！」，請改成「嗯，我又開始亂想了，不要想了，走吧！」</p>
+<h3 id="想放棄時，問自己三個問題"><a href="#想放棄時，問自己三個問題" class="headerlink" title="想放棄時，問自己三個問題"></a>想放棄時，問自己三個問題</h3><p>放棄不是失敗，而是一種決定</p>
+<p>多方嘗試後，剔除不適合的事，也是一種方法，特別是對「挑戰新手」來說，因為不太了解自己的喜好，嘗試不同的挑戰都是有意義的。</p>
+<aside>
+💡 反覆試錯、找路，是每個人必經的過程。
+
+</aside>
+
+<ol>
+<li><p>是否覺得不再開心</p>
+<pre><code>如果像是起身去做的前一刻覺得懶，試著忍耐一下，堅持看看。單純覺得麻煩的事，養成習慣之後就沒那麼難了。
+</code></pre>
+</li>
+<li><p>長期來看，是否沒有正面成果</p>
+</li>
+<li><p>是否只對別人有好處，自己呢？</p>
+<pre><code>如果做這件事沒辦法獲得任何樂趣、成就感，那果斷放棄也無妨。
+</code></pre>
+</li>
+</ol>
+<p>不要在壓力大的時候做決定</p>
+<h3 id="不要當喪屍，管理體力的訣竅"><a href="#不要當喪屍，管理體力的訣竅" class="headerlink" title="不要當喪屍，管理體力的訣竅"></a>不要當喪屍，管理體力的訣竅</h3><ol>
+<li>運動</li>
+</ol>
+<p>為了避免自己沒時間、太忙了的藉口，作者利用上班前的時間運動，一開始真的很累，很想睡，但撐過一兩個月後身體就習慣了。</p>
+<ol>
+<li>兩個月定律</li>
+</ol>
+<p>人是習慣的動物，撐過兩個月以後，就會慢慢維持住那個習慣的體力</p>
+<ol>
+<li>吃得好，就是對自己好</li>
+<li>陽光比 3C 重要</li>
+<li>冥想</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>《原子時間》 Atomic Time 讀後筆記</p><p><a href="https://debbie8820.github.io/2021/12/05/AtomicTime/">https://debbie8820.github.io/2021/12/05/AtomicTime/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Debbie</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-12-05</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-12-05</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Time-management/">Time management</a><a class="link-muted mr-2" rel="tag" href="/tags/Reading/">Reading</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/01/10/algorithm/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">演算法超簡介</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/12/03/CS50-Pset2/"><span class="level-item">CS50 Pset2-Solutions Readability | Substitution</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">10</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Reading/"><span class="level-start"><span class="level-item">Reading</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Tech/"><span class="level-start"><span class="level-item">Tech</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-06T09:51:09.666Z">2022-02-06</time></p><p class="title"><a href="/2022/02/06/Untitled-3/"> </a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2022/01/10/algorithm/"><img src="/gallery/algorithm.jpg" alt="演算法超簡介"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-01-10T15:05:29.000Z">2022-01-10</time></p><p class="title"><a href="/2022/01/10/algorithm/">演算法超簡介</a></p><p class="categories"><a href="/categories/Tech/">Tech</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/05/AtomicTime/"><img src="/gallery/clock.jpg" alt="《原子時間》 Atomic Time 讀後筆記"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-05T05:51:11.000Z">2021-12-05</time></p><p class="title"><a href="/2021/12/05/AtomicTime/">《原子時間》 Atomic Time 讀後筆記</a></p><p class="categories"><a href="/categories/Reading/">Reading</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/03/CS50-Pset2/"><img src="/gallery/cs50w2pset2.jpg" alt="CS50 Pset2-Solutions Readability | Substitution"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-03T04:02:14.000Z">2021-12-03</time></p><p class="title"><a href="/2021/12/03/CS50-Pset2/">CS50 Pset2-Solutions Readability | Substitution</a></p><p class="categories"><a href="/categories/Tech/">Tech</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/11/29/CS50-WEEK2-Arrays/"><img src="/gallery/cs50w2logo2.jpg" alt="CS50 WEEK2-Arrays"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-11-29T08:28:29.000Z">2021-11-29</time></p><p class="title"><a href="/2021/11/29/CS50-WEEK2-Arrays/">CS50 WEEK2-Arrays</a></p><p class="categories"><a href="/categories/Tech/">Tech</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">February 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">January 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">November 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Algorithm/"><span class="tag">Algorithm</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Arrays/"><span class="tag">Arrays</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CS50/"><span class="tag">CS50</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Pointer/"><span class="tag">Pointer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Reading/"><span class="tag">Reading</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Solutions/"><span class="tag">Solutions</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Sorting/"><span class="tag">Sorting</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Time-management/"><span class="tag">Time management</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Debbie&#039;s Notes on Life and Tech" height="28"></a><p class="is-size-7"><span>&copy; 2024 Debbie</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

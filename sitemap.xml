@@ -56,6 +56,20 @@
 
   
   <url>
+    <loc>https://debbie8820.github.io/tags/Time-management/</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://debbie8820.github.io/tags/Reading/</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://debbie8820.github.io/tags/C/</loc>
     <lastmod>2024-05-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -64,6 +78,13 @@
   
   <url>
     <loc>https://debbie8820.github.io/tags/CS50/</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://debbie8820.github.io/tags/Arrays/</loc>
     <lastmod>2024-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -104,38 +125,17 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://debbie8820.github.io/tags/Arrays/</loc>
-    <lastmod>2024-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://debbie8820.github.io/tags/Time-management/</loc>
-    <lastmod>2024-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://debbie8820.github.io/tags/Reading/</loc>
-    <lastmod>2024-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
-    <loc>https://debbie8820.github.io/categories/Tech/</loc>
+    <loc>https://debbie8820.github.io/categories/Reading/</loc>
     <lastmod>2024-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://debbie8820.github.io/categories/Reading/</loc>
+    <loc>https://debbie8820.github.io/categories/Tech/</loc>
     <lastmod>2024-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

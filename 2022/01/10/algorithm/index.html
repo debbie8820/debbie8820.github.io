@@ -1,43 +1,145 @@
-const { Component } = require('inferno');
-const classname = require('hexo-component-inferno/lib/util/classname');
-const Head = require('./common/head');
-const Navbar = require('./common/navbar');
-const Widgets = require('./common/widgets');
-const Footer = require('./common/footer');
-const Scripts = require('./common/scripts');
-const Search = require('./common/search');
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>演算法超簡介 - Debbie&#039;s Notes on Life and Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Debbie&#039;s Notes on Life and Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Debbie&#039;s Notes on Life and Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="寫這篇文章主要是因為自己對資料結構不是太熟悉，故希望用文字的方式記錄一些常見的資料結構，當然之後還會再針對個別結構的實際應用詳細描述，本篇算是入門簡介。 什麼是資料結構?資料排序、儲存的方式，不同的資料結構會影響存取資料的難易程度，因此了解資料的結構與適合的場景才能幫助我們判斷寫程式時該使用什麼資料結構才能提高使用效率。 資料結構有哪些? Linked list 串列  線性的資料結構，由節點 ("><meta property="og:type" content="blog"><meta property="og:title" content="演算法超簡介"><meta property="og:url" content="https://debbie8820.github.io/2022/01/10/algorithm/"><meta property="og:site_name" content="Debbie&#039;s Notes on Life and Tech"><meta property="og:description" content="寫這篇文章主要是因為自己對資料結構不是太熟悉，故希望用文字的方式記錄一些常見的資料結構，當然之後還會再針對個別結構的實際應用詳細描述，本篇算是入門簡介。 什麼是資料結構?資料排序、儲存的方式，不同的資料結構會影響存取資料的難易程度，因此了解資料的結構與適合的場景才能幫助我們判斷寫程式時該使用什麼資料結構才能提高使用效率。 資料結構有哪些? Linked list 串列  線性的資料結構，由節點 ("><meta property="og:locale" content="en_US"><meta property="og:image" content="https://debbie8820.github.io/gallery/algorithm.jpg"><meta property="article:published_time" content="2022-01-10T15:05:29.000Z"><meta property="article:modified_time" content="2022-01-11T14:02:11.102Z"><meta property="article:author" content="Debbie"><meta property="article:tag" content="Algorithm"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://debbie8820.github.io/gallery/algorithm.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://debbie8820.github.io/2022/01/10/algorithm/"},"headline":"演算法超簡介","image":["https://debbie8820.github.io/gallery/algorithm.jpg"],"datePublished":"2022-01-10T15:05:29.000Z","dateModified":"2022-01-11T14:02:11.102Z","author":{"@type":"Person","name":"Debbie"},"publisher":{"@type":"Organization","name":"Debbie's Notes on Life and Tech","logo":{"@type":"ImageObject","url":"https://debbie8820.github.io/img/logo.svg"}},"description":"寫這篇文章主要是因為自己對資料結構不是太熟悉，故希望用文字的方式記錄一些常見的資料結構，當然之後還會再針對個別結構的實際應用詳細描述，本篇算是入門簡介。 什麼是資料結構?資料排序、儲存的方式，不同的資料結構會影響存取資料的難易程度，因此了解資料的結構與適合的場景才能幫助我們判斷寫程式時該使用什麼資料結構才能提高使用效率。 資料結構有哪些? Linked list 串列  線性的資料結構，由節點 ("}</script><link rel="canonical" href="https://debbie8820.github.io/2022/01/10/algorithm/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6637714046288894" crossorigin="anonymous"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-module.exports = class extends Component {
-    render() {
-        const { site, config, page, helper, body } = this.props;
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-        const language = page.lang || page.language || config.language;
-        const columnCount = Widgets.getColumnCount(config.widgets, config, page);
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-        return <html lang={language ? language.substr(0, 2) : ''}>
-            <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-${columnCount}-column`}>
-                <Navbar config={config} helper={helper} page={page} />
-                <section class="section">
-                    <div class="container">
-                        <div class="columns">
-                            <div class={classname({
-                                column: true,
-                                'order-2': true,
-                                'column-main': true,
-                                'is-12': columnCount === 1,
-                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
-                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
-                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
-                        </div>
-                    </div>
-                </section>
-                <Footer config={config} helper={helper} />
-                <Scripts site={site} config={config} helper={helper} page={page} />
-                <Search config={config} helper={helper} />
-            </body>
-        </html>;
-    }
-};
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Debbie&#039;s Notes on Life and Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-01-10T15:05:29.000Z" title="2022/1/10 下午11:05:29">2022-01-10</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-01-11T14:02:11.102Z" title="2022/1/11 下午10:02:11">2022-01-11</time></span><span class="level-item"><a class="link-muted" href="/categories/Tech/">Tech</a></span><span class="level-item">12 minutes read (About 1750 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">演算法超簡介</h1><div class="content"><p>寫這篇文章主要是因為自己對資料結構不是太熟悉，故希望用文字的方式記錄一些常見的資料結構，當然之後還會再針對個別結構的實際應用詳細描述，本篇算是入門簡介。<br></br><br></br></p>
+<h5 id="什麼是資料結構"><a href="#什麼是資料結構" class="headerlink" title="什麼是資料結構?"></a>什麼是資料結構?</h5><p>資料排序、儲存的方式，不同的資料結構會影響存取資料的難易程度，因此了解資料的結構與適合的場景才能幫助我們判斷寫程式時該使用什麼資料結構才能提高使用效率。<br></br><br></br></p>
+<h5 id="資料結構有哪些"><a href="#資料結構有哪些" class="headerlink" title="資料結構有哪些?"></a>資料結構有哪些?</h5><ol>
+<li><p>Linked list 串列</p>
+<p> 線性的資料結構，由節點 (nodes) 組成，每個節點包含自己的數據 (data) 及一個指標 (pointer)，指標會指向下一個節點在記憶體中的位址，最後一個 node 的 pointer 會指向 null， 代表串列的終點，也因為有指標會記錄下個數據位置，因此每個節點在記憶體中不需要連續儲存。</p>
+<p> 特性：</p>
+<p> 存取數據時需要從頭跟著指標依序存取 (sequential access)，最多會花費 O(n) 的時間</p>
+<p> 增刪數據時只要把指標轉向即可，花費時間為 O(1)</p>
+</br>
+</br>    </li>
+<li><p>Array 陣列</p>
+<p> 陣列也屬於線性的資料結構，跟串列 (linked list)不同的是，陣列的數據是依序儲存在記憶體當中，因此可以使用索引 (index) 算出記憶體位址並直接存取數據，這又叫隨機存取 (random access)。</p>
+<p> 特性：</p>
+<p> 存取數據可以利用索引算出記憶體位址，直接存取數據，花費時間為 O(1)</p>
+<p> 增刪數據需要移動其他數據，比方今天要將一個元素插入陣列中第二個位置，首先要確認陣列最後面還有記憶體空間，接著把索引為 1 以後的元素全部往後挪一個位置，最後才能把新元素安插進去，最多會花費 O(n) 的時間。</p>
+</br>
+</br>   </li>
+<li><p>queue 佇列</p>
+<p> 像是排隊的人潮一樣，先來的會優先處理，後來的則會排在隊伍的最後面，屬於先進先出(First In Last Out)的規範。</p>
+<p> 特性：</p>
+<p> 最舊的數據會優先被處理，假設要取中間的數據，跟堆疊一樣要先將在其之前的數據全部取出 (pop out)才能存取。</p>
+</br>
+</br></li>
+<li><p>stack 堆疊</p>
+<p> 這種數據結構可以把它想像成堆疊盤子一樣，最早洗好的碗盤一定放在最下方，最晚洗好的則疊在最上方，如果要取盤子，要從最上方的開始拿，遵守後進先出 (Last In First Out)的規則。</p>
+<p> 特性：</p>
+<p> 存取數據必須從最上方的數據開始拿，假設要取中間的數據，要先將在其之上的數據全部取出 (pop out)才行。</p>
+</br>
+</br></li>
+<li><p>hash table 雜湊表</p>
+<p> 雜湊表是用來儲存 key / value 這種成對數據的資料結構，利用雜湊函數 (hash table) 計算出所需數據在 Array 中的 index 是什麼，相較於使用 Array 進行搜索需要一個個尋找，時間複雜度為 O(n)，雜湊表平均搜索的時間可以到 O(1)。 </p>
+ <aside>
+ 💡 **key → HASH FUNCTION → array_index**
+
+ </aside>
+
+<p> 舉例來說，今天有個簡易的電話簿要存到陣列裡面，key 為人名，value 為電話，要儲存每個人名之前會先經過雜湊函數，計算出 index 值，再把 key / value 存到對應的陣列中</p>
+<p> e.g. key: Debbie<br> Index = hash function (Debbie) = 2<br> <img src="/gallery/hashtable1.jpg" alt="insert data into hash table" title="insert data into hash table"></p>
+<p> 那假設今天計算出的 index 中已經有其他數據了怎麼辦呢？不同的 key 得出相同的雜湊值，這樣的情況我們稱之為碰撞 (Collision)，有兩種常見的解決方式，分別是鏈結法(Chaining) 和 Open Addressing, </p>
+<p> 鏈結法(Chaining)：</p>
+<p> 將同樣雜湊值的數據存成一個 linked list，這樣做後查找會變成線性搜尋，因此要注意 hash table 是否會造成太多碰撞，否則查找時間會跟 Array 相同。</p>
+<p> 開放定址法(Open addressing)：</p>
+<p> 當求出的位址已經存放數據時，再去尋找其他陣列中空缺的位置，至於怎麼查找也有多種方式</p>
+<p> 特性：因為有雜湊函數的幫助，查找時大幅減少搜索的時間，因為只要把 key 值丟到雜湊函數並得出 index, 就可以知道我們要找的值在 array 的某個 index 當中。不過也要注意陣列的規模選擇，規模太小容易發生碰撞，提高線性搜尋的情況，規模太大則會導致記憶體空間的浪費。</p>
+</br>
+</br></li>
+<li><p>heap 堆積</p>
+<p>堆積是二元樹結構的一種，意思是每個節點(node) 底下最多可以擁有兩個子節點，特性如下：</p>
+<ul>
+<li><p>在最大堆積(max heap)，子節點的數值會比父節點小，最上面的節點(root)是最大的節點<br><img src="/gallery/maxheap.jpg" alt="maxheap" title="maxheap"></p>
+</li>
+<li><p>在最小堆積(min heap)，子節點的數值會比父節點大，最上面的節點(root)是最小的節點<br><img src="/gallery/minheap.jpg" alt="minheap" title="minheap"></p>
+</li>
+</ul>
+<p>雖然稱它為二元樹的結構，但事實上它是個 Array，以上面 min heap 例子來解釋的話，它在 Array 的位置是從上到小、左到右排序<br><img src="/gallery/heapindex.jpg" alt="heapindex" title="heapindex"><br>在追加數據時，要將尾端數據和父節點比較並視情況調整位置，需要時間和樹的高度成正比，至於實際交換過程礙於篇幅限制會再寫一篇文章說明。</p>
+</br>
+</br></li>
+<li><p>binary search tree 二元搜尋樹</p>
+</li>
+</ol>
+<ul>
+<li>所有節點都大於連結在其左邊的節點</li>
+<li>所有節點都大於連結在其左邊的節點<br><img src="/gallery/bst.jpg" alt="BST" title="BST"></li>
+</ul>
+<p>  從上述特性可以得知從最上面的節點往左邊走到最底會找到最小值，往右走到底則會是最大值</p>
+<p>  不論是在追加或是搜尋數據，都只要和當下的數據比較大小就可以決定該往左還是往右移動，執行時間也是和樹的高度成正比。實際比較的情況一樣會再新的文章中說明。</p>
+<p>以上就是常見的資料結構簡單說明，對文章有任何想法歡迎留言交流！<br></br></p>
+<p><strong>參考資料</strong><br>演算法圖鑑 <a target="_blank" rel="noopener" href="https://www.notion.so/d757944b500a44c481f6b9c309297aad#e4ce1dd3d205441b998f6e6f09df9de1">https://www.notion.so/d757944b500a44c481f6b9c309297aad#e4ce1dd3d205441b998f6e6f09df9de1</a>)</p>
+<p>Heap data structure <a target="_blank" rel="noopener" href="https://www.notion.so/d757944b500a44c481f6b9c309297aad#949aae7627df4960a7df89d1bd59637e">https://www.notion.so/d757944b500a44c481f6b9c309297aad#949aae7627df4960a7df89d1bd59637e</a></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>演算法超簡介</p><p><a href="https://debbie8820.github.io/2022/01/10/algorithm/">https://debbie8820.github.io/2022/01/10/algorithm/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Debbie</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2022-01-10</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-01-11</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Algorithm/">Algorithm</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/02/06/Untitled-3/"><i class="level-item fas fa-chevron-left"></i><span class="level-item"> </span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/12/05/AtomicTime/"><span class="level-item">《原子時間》 Atomic Time 讀後筆記</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">10</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Reading/"><span class="level-start"><span class="level-item">Reading</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Tech/"><span class="level-start"><span class="level-item">Tech</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-06T09:51:09.666Z">2022-02-06</time></p><p class="title"><a href="/2022/02/06/Untitled-3/"> </a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2022/01/10/algorithm/"><img src="/gallery/algorithm.jpg" alt="演算法超簡介"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-01-10T15:05:29.000Z">2022-01-10</time></p><p class="title"><a href="/2022/01/10/algorithm/">演算法超簡介</a></p><p class="categories"><a href="/categories/Tech/">Tech</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/05/AtomicTime/"><img src="/gallery/clock.jpg" alt="《原子時間》 Atomic Time 讀後筆記"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-05T05:51:11.000Z">2021-12-05</time></p><p class="title"><a href="/2021/12/05/AtomicTime/">《原子時間》 Atomic Time 讀後筆記</a></p><p class="categories"><a href="/categories/Reading/">Reading</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/12/03/CS50-Pset2/"><img src="/gallery/cs50w2pset2.jpg" alt="CS50 Pset2-Solutions Readability | Substitution"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-12-03T04:02:14.000Z">2021-12-03</time></p><p class="title"><a href="/2021/12/03/CS50-Pset2/">CS50 Pset2-Solutions Readability | Substitution</a></p><p class="categories"><a href="/categories/Tech/">Tech</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/11/29/CS50-WEEK2-Arrays/"><img src="/gallery/cs50w2logo2.jpg" alt="CS50 WEEK2-Arrays"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-11-29T08:28:29.000Z">2021-11-29</time></p><p class="title"><a href="/2021/11/29/CS50-WEEK2-Arrays/">CS50 WEEK2-Arrays</a></p><p class="categories"><a href="/categories/Tech/">Tech</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">February 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">January 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">November 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Algorithm/"><span class="tag">Algorithm</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Arrays/"><span class="tag">Arrays</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CS50/"><span class="tag">CS50</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JS/"><span class="tag">JS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Pointer/"><span class="tag">Pointer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Reading/"><span class="tag">Reading</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Solutions/"><span class="tag">Solutions</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Sorting/"><span class="tag">Sorting</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Time-management/"><span class="tag">Time management</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Debbie&#039;s Notes on Life and Tech" height="28"></a><p class="is-size-7"><span>&copy; 2024 Debbie</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
