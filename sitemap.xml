@@ -84,13 +84,6 @@
   </url>
   
   <url>
-    <loc>https://debbie8820.github.io/tags/Arrays/</loc>
-    <lastmod>2024-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://debbie8820.github.io/tags/Pointer/</loc>
     <lastmod>2024-05-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -105,7 +98,7 @@
   </url>
   
   <url>
-    <loc>https://debbie8820.github.io/tags/Sorting/</loc>
+    <loc>https://debbie8820.github.io/tags/Arrays/</loc>
     <lastmod>2024-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -113,6 +106,13 @@
   
   <url>
     <loc>https://debbie8820.github.io/tags/Algorithm/</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://debbie8820.github.io/tags/Sorting/</loc>
     <lastmod>2024-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
